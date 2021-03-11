@@ -8,6 +8,8 @@ This weekend project is all about: API calls, CRUD, js, CSS styling etc. - This 
 - [ ] Write & Degug the CSS part - 3 hours
 - [ ] Test the app using jest - 2 hours
 - [ ] Design UI - 1 hour
+
+
 Process is "agile" - design, write, debug => redesign, rewrite, test
 
 
