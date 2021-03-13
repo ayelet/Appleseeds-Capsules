@@ -1,0 +1,253 @@
+:root {
+  --primaryColor: #387f99;
+  --backgroundColor: #fff6c1;
+  --textColor: white;
+  --femaleIconColor: #F04558;
+  --maleIconColor: #BBE0CF;
+  --otherIconColor: #ffffff;
+}
+.btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 2px;
+  position: relative;
+  outline: none;
+  border-radius: 50%;
+  color: var(--textColor);
+  border-color: #98a9af;
+  background: var(--primaryColor);
+}
+/* .text {
+  line-height: 2.2rem;
+  font-size: 1.2rem;
+  border-radius: 15px;
+} */
+.title {
+  font-family: "Playball", cursive;
+  padding-top: 20px;
+  padding-bottom: 5px;
+}
+
+/* .task {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 4px 12px;
+}
+.task-text {
+  width: 100%;
+  margin: 5px;
+  height: inherit;
+  background: transparent;
+  border: none;
+}
+
+.new-task-container {
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 10px;
+}
+.new-task-btn {
+  font-size: 20px;
+}
+.task-list-container {
+  min-height: 50%;
+  height: fit-content;
+}
+.input-field {
+  width: 100%;
+  margin-top: 2px;
+  border-radius: 15px;
+  border-color: var(--primaryColor);
+  outline: none;
+} */
+
+body {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background: url("../img/bk1.webp") repeat center center fixed;
+  font-family: "Happy Monkey", cursive;
+  font-size: 1.2rem;
+  height: 100%;
+  position: top;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.box {
+  position: relative;
+  margin: 40px auto;
+  margin-top: 10px;
+  /* min-width: 400px; */
+  width: 80vw;
+  min-height: 350px;
+  height: fit-content;
+  background: #fff;
+  border-radius: 12px;
+  background-color: var(--backgroundColor);
+  padding-bottom: 1px;
+}
+
+.box::before,
+.box::after {
+  content: "";
+  position: absolute;
+  bottom: 10px;
+  width: 40%;
+  height: 10px;
+  height: 60%;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.7);
+  z-index: -1;
+  transition: all 0.3s ease-in-out;
+}
+
+.box::before {
+  left: 15px;
+  transform: skew(-5deg) rotate(-5deg);
+}
+
+.box::after {
+  right: 15px;
+  transform: skew(5deg) rotate(5deg);
+}
+
+.box:hover::before,
+.box:hover::after {
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.4);
+}
+
+.box:hover::before {
+  left: 5px;
+}
+
+.box:hover::after {
+  right: 5px;
+}
+
+hr {
+  padding: 0;
+  margin: 0;
+  border-bottom: none;
+  color: var(--primaryColor);
+}
+
+.task-list {
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.task-item {
+  list-style: none;
+}
+.task-text {
+  text-align: left;
+}
+
+.task-delete {
+  font-size: 1rem;
+}
+
+/* custom checkbox */
+.checkbox-container {
+  position: relative;
+}
+
+.task-complete {
+  position: absolute;
+  opacity: 0;
+  width: 30px;
+  height: 30px;
+  left: 0;
+}
+
+.checkbox-container span {
+  width: 35px;
+  height: 30px;
+  display: block;
+  border-radius: 12px;
+  color: var(--primaryColor);
+  font-size: 2.2rem !important;
+}
+
+/* Responsive Table Styling here */
+#resp-table {
+  width: 100%;
+  display: table;
+}
+
+#resp-table-caption {
+  display: table-caption;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+#resp-table-header {
+  display: table-header-group;
+  background-color: var(--primaryColor);
+  font-weight: bold;
+  font-size: 1.4rem;
+  text-align: center;
+  color: var(--textColor)
+}
+
+.table-header-cell {
+  display: table-cell;
+  padding: 10px;
+  text-align: justify;
+  border-bottom: 1px solid black;
+}
+
+#resp-table-body {
+  display: table-row-group;
+}
+
+.resp-table-row {
+  display: table-row;
+}
+
+
+
+.table-body-cell {
+  display: table-cell;
+  line-height: 2rem;
+  border-bottom: 1px dashed var(--primaryColor);  
+}
+
+#resp-table-footer {
+  display: table-footer-group;
+  background-color: gray;
+  font-weight: bold;
+  font-size: 25px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.table-footer-cell {
+  display: table-cell;
+  padding: 10px;
+  text-align: justify;
+  border-bottom: 1px solid black;
+}
+
+
+/* Footer */
+footer{
+  background-color: var(--backgroundColor);
+  height: 3rem;
+  padding: 12px auto;
+}
+
+.footer p {
+ padding-top: 12px;
+}
+
+.social {
+  color: var(--primaryColor);
+  text-decoration: none;
+}
