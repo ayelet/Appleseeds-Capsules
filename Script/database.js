@@ -58,11 +58,11 @@ class StudentList {
         break;
 
       case StudentList.sortField.firstName:
-        this.list.sort((a, b) => a.getFirstName().trim().toUpperCase() < b.getFirstName().trim().toUpperCase());
+        this.list.sort((a, b) => this.sortByField(a.getFirstName(), b.getFirstName()));
         break;
 
       case StudentList.sortField.lastName:
-        this.list.sort((a, b) => a.getLastName() < b.getLastName());
+        this.list.sort((a, b) => this.sortByField(a.getLastName(), b.getLastName()));
         break;
 
       case StudentList.sortField.Capsule:
@@ -74,21 +74,26 @@ class StudentList {
         break;
 
       case StudentList.sortField.City:
-        this.list.sort((a, b) => a.getCity() < b.getCity());
+        this.list.sort((a, b) => this.sortByField(a.getCity(), b.getCity()));
         break;
       case StudentList.sortField.Gender:
-        this.list.sort((a, b) => a.getGender().charCodeAt(0) - b.getGender().charCodeAt(0));
+        this.list.sort((a, b) => this.sortByField(a.getGender(), b.getGender()));
         break;
       case StudentList.sortField.Hobby:
-        // this.list.sort((a, b) => a.getHobby() < b.getHobby());
-        this.list.sort((a,b) => { this.sortByField(a.getHobby(), b.getHobby())});
-        
+        this.list.sort((a,b) => this.sortByField(a.getHobby(), b.getHobby()));
         break;
     }
   }
 
-  sortByField(x,y) {
-    return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+  sortByField(a,b) {
+    const x = a.toLowerCase().trim();
+    const y = b.toLowerCase().trim();
+    if (x < y) return -1;
+    if (x > y) return 1;
+    return 0;
+    // if(a.getHobby() < b.getHobby()) { return -1; }
+    // if(a.getHobby() > b.getHobby()) { return 1; }
+    // return 0;
   }
 
   search(str) {
