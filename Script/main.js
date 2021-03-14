@@ -142,20 +142,20 @@ class StudentsDisplay {
   }
 
   getFromLocalStorage() {
-    // const counter = localStorage.getItem("TaskCounter");
-    // TaskList.counter = Number(counter);
-    const storage = localStorage.getItem("BootcampStudent");
+   
+    const storage = localStorage.getItem("students");
     if (storage) {
-      let data = JSON.parse(storage);
-      console.log(data);
-      let i = 0;
-      while (i < data.length) {
-        let student = student.fromJson(data[i]);
-        console.log(student instanceof Student);
-        // task.print();
-        this.students.add(student);
-        i++;
-      }
+      this.students.getFromLocalStorage();
+    //   let data = JSON.parse(storage);
+    //   console.log(data);
+    //   let i = 0;
+    //   while (i < data.length) {
+    //     let student = student.fromJson(data[i]);
+    //     console.log(student instanceof Student);
+    //     // task.print();
+    //     this.students.add(student);
+    //     i++;
+    //   }
       this.updateDisplay();
       return true;
     } else {
@@ -297,22 +297,8 @@ class StudentsDisplay {
 }
 
 function main() {
-  // let storage = window.localStorage;
-  studentsDisplay = new StudentsDisplay();
 
-  //   let sortTypeBtn = document.querySelector(".sort-type");
-  //   sortTypeBtn.addEventListener("click", () => {
-  //     // toggle sort up/down
-  //     StudentsDisplay.sortType = !StudentsDisplay.sortType;
-  //     if (studentsDisplay.sortType === "up") {
-  //       studentDisplay.sortType = "down";
-  //       sortTypeBtn.innerHTML = "0xf160";
-  //     } else {
-  //       studentDisplay.sortType = "up";
-  //       sortTypeBtn.innerHTML = "0xf161";
-  //     }
-  //     studentsDisplay.updateDisplay();
-  //   });
+  studentsDisplay = new StudentsDisplay();
 }
 let studentsDisplay = null;
 window.onload = (event) => {

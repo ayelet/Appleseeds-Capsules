@@ -11,6 +11,7 @@ class StudentList {
   addStudent(student) {
     if (this.validateStudent(student)) {
       this.list.push(student);
+      this.addToLocalStorage();
       return;
     }
     throw "StudentList: Add Error: invalid input";
@@ -20,6 +21,7 @@ class StudentList {
     if (!student) return false;
     let index = this.list.indexOf(student);
     this.list.splice(index, 1);
+    this.addToLocalStorage();
     return true;
   }
   // search for a student by id,
@@ -49,6 +51,7 @@ class StudentList {
     thisStudent.setCity(student.getCity());
     thisStudent.setGender(student.getGender());
     thisStudent.setHobby(student.getHobby());
+    this.addToLocalStorage();
   }
   sort(field, direction = 0) {
     console.log("sorting by", field);
@@ -91,16 +94,33 @@ class StudentList {
     if (x < y) return -1;
     if (x > y) return 1;
     return 0;
-    // if(a.getHobby() < b.getHobby()) { return -1; }
-    // if(a.getHobby() > b.getHobby()) { return 1; }
-    // return 0;
   }
 
   search(str) {
     return [];
   } //TODO-implement
-  addToLocalStorage() {} //TODO-implement
-  getFromLocalStorage() {} //TODO-implement
+
+  async addToLocalStorage() {
+    let data = JSON.stringify(this.list);
+    localStorage.setItem("students", data);
+  } // write tasks to local storage
+  getFromLocalStorage() {
+  
+    const storage = localStorage.getItem("students");
+    if (storage) {
+      let data = JSON.parse(storage);
+      console.log(data);
+      let i = 0;
+      while (i < data.length) {
+        let student = Student.fromJson(data[i]);
+        console.log(student instanceof Student);
+        // student.print();
+        this.addStudent(student);
+        i++;
+      }
+    }
+    // this.updateDisplay();
+  }
   validateStudent() {
     return true;
   } //TODO- implement
