@@ -7,7 +7,6 @@ function handleError(err) {
   console.log(err);
 }
 
-
 async function fetchUrl(url) {
   return await fetch(url)
     .then((response) => (response.ok ? response : Error(response.status)))
@@ -23,6 +22,9 @@ class StudentsDisplay {
     let i = 0;
 
     if (!this.getFromLocalStorage()) this.loadDataFromApi();
+    const sortBtn = document.querySelector(".sort-select");
+    sortBtn.addEventListener("change", this.onSortTable);
+    this.updateDisplay();
   }
 
   add(student) {} //TODO-implement
@@ -32,12 +34,21 @@ class StudentsDisplay {
     return true;
   }
   update(id, updateObj) {
-     let student = new Student(updateObj[0],updateObj[1], updateObj[2], updateObj[3], this.update[4], updateObj[5], this.update[6], this.update[7]); 
-     console.log("new student created: ", student);
-     return this.students.updateStudent(id, student);
-  } 
+    let student = new Student(
+      updateObj[0],
+      updateObj[1],
+      updateObj[2],
+      updateObj[3],
+      this.update[4],
+      updateObj[5],
+      this.update[6],
+      this.update[7]
+    );
+    console.log("new student created: ", student);
+    return this.students.updateStudent(id, student);
+  }
   updateDisplay() {
-    let table = document.getElementById("resp-table-body");
+    const table = document.getElementById("resp-table-body");
     table.innerHTML = "";
     for (let i = 0; i < this.students.getLength(); i++) {
       //[{"id":0,"firstName":"Adan","lastName":"Hajyahya","capsule":3}
@@ -69,6 +80,7 @@ class StudentsDisplay {
       let cellGender = document.createElement("div");
       cellGender.classList.add(`table-body-cell`);
       cellGender.classList.add("fas");
+      cellGender.classList.add("cell-gender");
       let gender = studentList[i].getGender();
       if (gender === "f") {
         cellGender.classList.add("fa-female");
@@ -211,9 +223,8 @@ class StudentsDisplay {
       siblingBtn.addEventListener("click", this.onButtonCancel);
       // Logics issues
       let parent = e.target.parentElement.parentElement;
-      for (let i=1; i < parent.children.length-2; i++){
-          if (i !== 6)
-            parent.children[i].setAttribute("contenteditable", "true");
+      for (let i = 1; i < parent.children.length - 2; i++) {
+        if (i !== 6) parent.children[i].setAttribute("contenteditable", "true");
       }
     } catch (err) {
       console.log("onButtonEdit: ", err);
@@ -236,13 +247,13 @@ class StudentsDisplay {
       //Logistics
       let parent = e.target.parentElement.parentElement;
       let updateObj = {};
-      for (let i=0; i < parent.children.length-2; i++){
+      for (let i = 0; i < parent.children.length - 2; i++) {
         updateObj[i] = parent.children[i].innerHTML;
         parent.children[i].setAttribute("contenteditable", "false");
       }
       console.log(updateObj);
       this.update(id, updateObj);
-    } catch(err) {
+    } catch (err) {
       console.log("onButtonConfirm: ", err);
     }
   };
@@ -261,39 +272,48 @@ class StudentsDisplay {
       siblingBtn.addEventListener("click", this.onButtonEdit);
       siblingBtn.removeEventListener("click", this.onButtonConfirm);
       //Logistics
-   // Logics issues
-   let parent = e.target.parentElement.parentElement;
-   for (let i=1; i < parent.children.length-2; i++){
-       if (i !== 6)
-         parent.children[i].setAttribute("contenteditable", "false");
-   }
-   this.updateDisplay();
+      // Logics issues
+      let parent = e.target.parentElement.parentElement;
+      for (let i = 1; i < parent.children.length - 2; i++) {
+        if (i !== 6)
+          parent.children[i].setAttribute("contenteditable", "false");
+      }
+      this.updateDisplay();
     } catch (err) {
       console.log("onButtonCancel: ", err);
     }
   };
+
+  onSortTable = (e) =>  {
+      try {
+          console.log("sort by", e.currentTarget.selectedIndex);
+       
+        this.students.sort(e.currentTarget.selectedIndex);
+          this.updateDisplay();
+      } catch (err) {
+          console.log("onSortTable",err);
+      }
+  }
 }
 
 function main() {
   // let storage = window.localStorage;
   studentsDisplay = new StudentsDisplay();
 
-//   let sortTypeBtn = document.querySelector(".sort-type");
-//   sortTypeBtn.addEventListener("click", () => {
-//     // toggle sort up/down
-//     StudentsDisplay.sortType = !StudentsDisplay.sortType;
-//     if (studentsDisplay.sortType === "up") {
-//       studentDisplay.sortType = "down";
-//       sortTypeBtn.innerHTML = "0xf160";
-//     } else {
-//       studentDisplay.sortType = "up";
-//       sortTypeBtn.innerHTML = "0xf161";
-//     }
-//     studentsDisplay.updateDisplay();
-//   });
-  studentsDisplay.updateDisplay();
+  //   let sortTypeBtn = document.querySelector(".sort-type");
+  //   sortTypeBtn.addEventListener("click", () => {
+  //     // toggle sort up/down
+  //     StudentsDisplay.sortType = !StudentsDisplay.sortType;
+  //     if (studentsDisplay.sortType === "up") {
+  //       studentDisplay.sortType = "down";
+  //       sortTypeBtn.innerHTML = "0xf160";
+  //     } else {
+  //       studentDisplay.sortType = "up";
+  //       sortTypeBtn.innerHTML = "0xf161";
+  //     }
+  //     studentsDisplay.updateDisplay();
+  //   });
 }
-
 let studentsDisplay = null;
 window.onload = (event) => {
   main();
