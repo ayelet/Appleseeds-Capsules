@@ -1,5 +1,9 @@
 # AppleseedsCapsules - Weekend project
 
+https://ayelet-appleseeds-bootcampers.netlify.app/
+
+![screen capture](https://github.com/ayelet/Appleseeds-Capsules/blob/main/Img/Capture.JPG)
+
 This weekend project is all about: API calls, CRUD, js, CSS styling etc. - This is a wrapup project that sums the js session
 ### Schedule Plan
 - [ ] Design General Structure of project - 1 hour
