@@ -30,22 +30,34 @@ class StudentsDisplay {
   add(student) {} //TODO-implement
   remove(id) {
     if (!this.students.removeStudent(id)) throw "Remove Student failed";
+    this.addToLocalStorage();
     this.updateDisplay();
     return true;
   }
   update(id, updateObj) {
-    let student = new Student(
-      updateObj[0],
-      updateObj[1],
-      updateObj[2],
-      updateObj[3],
-      this.update[4],
-      updateObj[5],
-      this.update[6],
-      this.update[7]
-    );
-    console.log("new student created: ", student);
-    return this.students.updateStudent(id, student);
+    try {
+      let student = new Student(
+        updateObj[0],
+        updateObj[1],
+        updateObj[2],
+        updateObj[3],
+        // this.update[4],
+        updateObj[4],
+        updateObj[5],
+        // this.update[6],
+        // this.update[7]
+        updateObj[6],
+        updateObj[7]
+      );
+      console.log("new student created: ", student);
+      if (this.students.updateStudent(id, student)) {
+
+        this.addToLocalStorage();
+        this.updateDisplay();
+      }
+    } catch (err) {
+      handleError(err);
+    }
   }
   updateDisplay() {
     const table = document.getElementById("resp-table-body");
@@ -141,21 +153,23 @@ class StudentsDisplay {
     }
   }
 
+  addToLocalStorage() {
+    this.students.addToLocalStorage();
+  }
   getFromLocalStorage() {
-   
     const storage = localStorage.getItem("students");
     if (storage) {
       this.students.getFromLocalStorage();
-    //   let data = JSON.parse(storage);
-    //   console.log(data);
-    //   let i = 0;
-    //   while (i < data.length) {
-    //     let student = student.fromJson(data[i]);
-    //     console.log(student instanceof Student);
-    //     // task.print();
-    //     this.students.add(student);
-    //     i++;
-    //   }
+      //   let data = JSON.parse(storage);
+      //   console.log(data);
+      //   let i = 0;
+      //   while (i < data.length) {
+      //     let student = student.fromJson(data[i]);
+      //     console.log(student instanceof Student);
+      //     // task.print();
+      //     this.students.add(student);
+      //     i++;
+      //   }
       this.updateDisplay();
       return true;
     } else {
@@ -200,8 +214,7 @@ class StudentsDisplay {
     try {
       let id = parseInt(e.target.parentElement.parentElement.id);
       console.log("id of parent is ", id, e.target.checked);
-      this.remove(id); 
-
+      this.remove(id);
     } catch (err) {
       console.log("onButtonDelete: ", err);
     }
@@ -283,20 +296,19 @@ class StudentsDisplay {
     }
   };
 
-  onSortTable = (e) =>  {
-      try {
-          console.log("sort by", e.currentTarget.selectedIndex);
-       
-        this.students.sort(e.currentTarget.selectedIndex);
-          this.updateDisplay();
-      } catch (err) {
-          console.log("onSortTable",err);
-      }
-  }
+  onSortTable = (e) => {
+    try {
+      console.log("sort by", e.currentTarget.selectedIndex);
+
+      this.students.sort(e.currentTarget.selectedIndex);
+      this.updateDisplay();
+    } catch (err) {
+      console.log("onSortTable", err);
+    }
+  };
 }
 
 function main() {
-
   studentsDisplay = new StudentsDisplay();
 }
 let studentsDisplay = null;

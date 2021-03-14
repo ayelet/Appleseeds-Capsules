@@ -11,7 +11,7 @@ class StudentList {
   addStudent(student) {
     if (this.validateStudent(student)) {
       this.list.push(student);
-      this.addToLocalStorage();
+      // this.addToLocalStorage();
       return;
     }
     throw "StudentList: Add Error: invalid input";
@@ -21,7 +21,7 @@ class StudentList {
     if (!student) return false;
     let index = this.list.indexOf(student);
     this.list.splice(index, 1);
-    this.addToLocalStorage();
+    // this.addToLocalStorage();
     return true;
   }
   // search for a student by id,
@@ -49,9 +49,10 @@ class StudentList {
     thisStudent.setCapsule(student.getCapsule());
     thisStudent.setAge(student.getAge());
     thisStudent.setCity(student.getCity());
-    thisStudent.setGender(student.getGender());
+    
+    // thisStudent.setGender(student.getGender());
     thisStudent.setHobby(student.getHobby());
-    this.addToLocalStorage();
+    // this.addToLocalStorage();
   }
   sort(field, direction = 0) {
     console.log("sorting by", field);
@@ -104,6 +105,7 @@ class StudentList {
     let data = JSON.stringify(this.list);
     localStorage.setItem("students", data);
   } // write tasks to local storage
+
   getFromLocalStorage() {
   
     const storage = localStorage.getItem("students");
@@ -126,7 +128,7 @@ class StudentList {
   validateStudent() {
     return true;
   } //TODO- implement
-  
+
   getLength() {
     return this.list.length;
   }

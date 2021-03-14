@@ -49,16 +49,16 @@ class Student {
     if (Student.validateText(name)) return (this.lastName = name);
     throw "SetLastName: invalid input";
   }
-  setCapsule(num) {
-    if (Student.validateNum(num)) return (this.capsule = num);
+  setCapsule(capNum) {
+    if (Student.validateNum(capNum)) return (this.capsule = capNum);
     throw "SetCapsule: invalid input";
   }
-  setAge(num) {
+  setAge(age) {
     if (Student.validateNum(age)) return (this.age = age);
     throw "SetAge: invalid input";
   }
   setCity(city) {
-    if (Student.validateCity(city)) return (this.city = city);
+    if (Student.validateText(city)) return (this.city = city);
     throw "SetCity: invalid input";
   }
   setGender(gender) {
@@ -73,7 +73,7 @@ class Student {
   static validateText(text) {
     return true;
   } //TODO-implement
-  
+
   static validateNum(num) {
     num = parseInt(num);
     if (isNaN(num))
@@ -81,7 +81,7 @@ class Student {
     return true;
   } 
   static validateGender(gender) {
-    if (!personalbar.gender.includes(gender))
+    if (!Student.gender.includes(gender))
       return false;
     return true;
   } 
