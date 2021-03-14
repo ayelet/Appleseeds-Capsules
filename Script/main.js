@@ -200,9 +200,8 @@ class StudentsDisplay {
     try {
       let id = parseInt(e.target.parentElement.parentElement.id);
       console.log("id of parent is ", id, e.target.checked);
-      this.remove(id); //TODO-implement?
+      this.remove(id); 
 
-      //TODO-change button name to "delete/confirm"
     } catch (err) {
       console.log("onButtonDelete: ", err);
     }

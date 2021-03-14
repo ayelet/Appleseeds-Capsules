@@ -121,9 +121,12 @@ class StudentList {
     }
     // this.updateDisplay();
   }
+  //checks that the data that is updated is valid. 
+  // returns true if valid, else returns false
   validateStudent() {
     return true;
   } //TODO- implement
+  
   getLength() {
     return this.list.length;
   }

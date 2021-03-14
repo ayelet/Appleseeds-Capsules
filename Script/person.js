@@ -73,6 +73,7 @@ class Student {
   static validateText(text) {
     return true;
   } //TODO-implement
+  
   static validateNum(num) {
     num = parseInt(num);
     if (isNaN(num))
