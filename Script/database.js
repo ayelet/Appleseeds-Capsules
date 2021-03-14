@@ -37,17 +37,17 @@ class StudentList {
   getStudents() { return this.list; }
 
   // Update the data of a student, id is never updated
-  updateStudent(student) {
-    let thisStudent = this.findStudent(student.getId());
+  updateStudent(id, student) {
+    let thisStudent = this.findStudent(id);
     if (!thisStudent) return false;
     // Student ID  change not allowed
-    thisStudent.setFirstName = student.getFirstName();
-    thisStudent.setLastName = student.getLastName();
-    thisStudent.setCapsule = student.getCapsule();
-    thisStudent.setAge = student.getAge();
-    thisStudent.setCity = student.getCity();
-    thisStudent.setGender = student.getGender();
-    thisStudent.setHobby = student.getHobby();
+    thisStudent.setFirstName( student.getFirstName() );
+    thisStudent.setLastName(student.getLastName());
+    thisStudent.setCapsule(student.getCapsule());
+    thisStudent.setAge(student.getAge());
+    thisStudent.setCity(student.getCity());
+    thisStudent.setGender(student.getGender());
+    thisStudent.setHobby(student.getHobby());
   } 
   sort(sortField, direction = ascending) {} //TODO-implement
   search(str) {

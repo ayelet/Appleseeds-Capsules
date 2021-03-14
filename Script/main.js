@@ -31,7 +31,11 @@ class StudentsDisplay {
     this.updateDisplay();
     return true;
   }
-  update(student) {} //TODO-implement
+  update(id, updateObj) {
+     let student = new Student(updateObj[0],updateObj[1], updateObj[2], updateObj[3], this.update[4], updateObj[5], this.update[6], this.update[7]); 
+     console.log("new student created: ", student);
+     return this.students.updateStudent(id, student);
+  } 
   updateDisplay() {
     let table = document.getElementById("resp-table-body");
     table.innerHTML = "";
@@ -230,8 +234,15 @@ class StudentsDisplay {
       siblingBtn.removeEventListener("click", this.onButtonCancel);
       siblingBtn.addEventListener("click", this.onButtonDelete);
       //Logistics
-      this.update(id);
-    } catch {
+      let parent = e.target.parentElement.parentElement;
+      let updateObj = {};
+      for (let i=0; i < parent.children.length-2; i++){
+        updateObj[i] = parent.children[i].innerHTML;
+        parent.children[i].setAttribute("contenteditable", "false");
+      }
+      console.log(updateObj);
+      this.update(id, updateObj);
+    } catch(err) {
       console.log("onButtonConfirm: ", err);
     }
   };
