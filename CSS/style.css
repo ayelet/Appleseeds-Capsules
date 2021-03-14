@@ -7,15 +7,18 @@
   --otherIconColor: #ffffff;
 }
 .btn {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 4.2rem;
+  height: 2rem;
   margin: 2px;
   position: relative;
   outline: none;
-  border-radius: 50%;
+  border-radius: 12px;
   color: var(--textColor);
   border-color: #98a9af;
-  background: var(--primaryColor);
+  /* background: var(--primaryColor); */
+  background: #f045584d;
+  /* font-family: 'Concert One', cursive, Arial; */
+  font-size: 18px;
 }
 /* .text {
   line-height: 2.2rem;
@@ -69,7 +72,8 @@ body {
   padding: 0;
   text-align: center;
   background: url("../img/bk1.webp") repeat center center fixed;
-  font-family: "Happy Monkey", cursive;
+  
+  font-family: 'Concert One', cursive, Arial;
   font-size: 1.2rem;
   height: 100%;
   position: top;
@@ -84,7 +88,7 @@ body {
   margin: 40px auto;
   margin-top: 10px;
   /* min-width: 400px; */
-  width: 80vw;
+  width: fit-content;
   min-height: 350px;
   height: fit-content;
   background: #fff;
@@ -97,10 +101,9 @@ body {
 .box::after {
   content: "";
   position: absolute;
-  bottom: 10px;
+  bottom: 20px;
   width: 40%;
-  height: 10px;
-  height: 60%;
+  height: 80%;
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.7);
   z-index: -1;
   transition: all 0.3s ease-in-out;
@@ -200,7 +203,7 @@ hr {
 .table-header-cell {
   display: table-cell;
   padding: 10px;
-  text-align: justify;
+  text-align: center;
   border-bottom: 1px solid black;
 }
 
@@ -210,6 +213,7 @@ hr {
 
 .resp-table-row {
   display: table-row;
+  font-family: "Happy Monkey", cursive;
 }
 
 
@@ -218,6 +222,7 @@ hr {
   display: table-cell;
   line-height: 2rem;
   border-bottom: 1px dashed var(--primaryColor);  
+  text-transform: capitalize;
 }
 
 #resp-table-footer {

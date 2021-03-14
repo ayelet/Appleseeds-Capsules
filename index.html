@@ -9,13 +9,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Playball&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Happy+Monkey&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
         integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
     <meta name="description"
         content="CRUD website that displays all students in the Appleseeds bootcamp. User can update fields, search and delete. Local storage is used to save time in loading the data from the API | Author: Ayelet Danieli">
     <link rel="stylesheet" href="./CSS/normalize.css">
     <link rel="stylesheet" href="./CSS/style.css">
-    <title>To Do List</title>
+    <title>Appleseeds Bootcamp Student List</title>
 </head>
 
 <body>
@@ -30,47 +32,38 @@
                 <!-- <input type="button" class="btn new-student-btn fas fa-plus" value="&#xf067" aria-label="Add to list"> -->
             </div>
             <div class="box student-list-container">
-                <span class="a-dropdown-container"><label for="s-result-sort-select" class="a-native-dropdown">Sort
-                        by:</label><select name="s" autocomplete="off" id="s-result-sort-select" tabindex="0"
-                        data-action="a-dropdown-select" class="a-native-dropdown a-declarative">
-
-                        <option
-                            data-url="/s?k=earphones&amp;s=relevanceblender&amp;qid=1615673681&amp;ref=sr_st_relevanceblender"
-                            value="relevanceblender" selected="">Featured</option>
-
-                        <option
-                            data-url="/s?k=earphones&amp;s=price-asc-rank&amp;qid=1615673681&amp;ref=sr_st_price-asc-rank"
-                            value="price-asc-rank">Price: Low to High</option>
-
-                        <option
-                            data-url="/s?k=earphones&amp;s=price-desc-rank&amp;qid=1615673681&amp;ref=sr_st_price-desc-rank"
-                            value="price-desc-rank">Price: High to Low</option>
-
-                        <option data-url="/s?k=earphones&amp;s=review-rank&amp;qid=1615673681&amp;ref=sr_st_review-rank"
-                            value="review-rank">Avg. Customer Review</option>
-
-                        <option
-                            data-url="/s?k=earphones&amp;s=date-desc-rank&amp;qid=1615673681&amp;ref=sr_st_date-desc-rank"
-                            value="date-desc-rank">Newest Arrivals</option>
-
-                    </select><span tabindex="-1" aria-label="Sort by:" class="a-button a-button-dropdown a-button-small"
-                        aria-hidden="true" id="a-autoid-3"><span class="a-button-inner"><span
-                                class="a-button-text a-declarative" data-action="a-dropdown-button" aria-hidden="true"
-                                id="a-autoid-3-announce"><span class="a-dropdown-label">Sort by:</span><span
-                                    class="a-dropdown-prompt">Featured</span></span><i
-                                class="a-icon a-icon-dropdown"></i></span></span></span>
+             
                 <div id='resp-table'>
                     <div id='resp-table-caption'>
-                        Student's List
+                        Student's List <span>&nbsp&nbsp&nbsp&nbsp</span>
+                        <span class="a-dropdown-container">
+                            <label for="s-result-sort-select" class="a-native-dropdown">Sort
+                                by:</label>
+                            <select name="s" autocomplete="off" id="sort-select" tabindex="0"
+                                data-action="a-dropdown-select" class="btn sort-select">
+                                <option value="First Name" selected="">First Name</option>
+                                <option value="Last Name">Last Name</option>
+                                <option value="Capsule">Capsule</option>
+                                <option value="Age">Age</option>
+                                <option value="City">City</option>
+                                <option value="Gender">Gender</option>
+                                <option value="Hobby">Hobby</option>
+                            </select>
+                            <!-- <input type="button" class="btn sort-type sort-up fas" aria-label="sort up" value="&#xf161"> -->
+                        </span>
                     </div>
+                      
                     <div id='resp-table-header'>
+                        <div class='table-header-cell'>ID</div>
                         <div class='table-header-cell'>Name</div>
                         <div class='table-header-cell'>Last Name</div>
-                        <div class='table-header-cell'>Age</div>
                         <div class='table-header-cell'>Capsule</div>
+                        <div class='table-header-cell'>Age</div>
                         <div class='table-header-cell'>City</div>
                         <div class='table-header-cell'>Gender</div>
                         <div class='table-header-cell'>Hobby</div>
+                        <div class='table-header-cell'></div>
+                        <div class='table-header-cell'></div>
                     </div>
 
                     <div id='resp-table-body'>

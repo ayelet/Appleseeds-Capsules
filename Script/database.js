@@ -17,19 +17,22 @@ class StudentList {
   }
   removeStudent(id) {
     let student = this.findStudent(id);
-    if (student) return false;
-    let indexOfStudent = this.list.indexOf(student);
-    this.list.splice(indexOfStudent, 1);
+    if (!student) return false;
+    let index= this.list.indexOf(student);
+    this.list.splice(index, 1);
     return true;
   }
-  // search for a student by id, returns the student data if found, false if not found
+  // search for a student by id, 
+  // returns the student if found, false if not found
   findStudent(id) {
     let student = this.list.find((student) => student.id === id);
     if (!student) return false;
 
-    let indexOfStudent = this.list.indexOf(student);
+    // let indexOfStudent = this.list.indexOf(student);
     return student;
   }
+
+  
   // Return all students
   getStudents() { return this.list; }
 
