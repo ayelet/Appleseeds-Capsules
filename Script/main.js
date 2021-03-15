@@ -18,16 +18,17 @@ async function fetchUrl(url) {
 class StudentsDisplay {
   constructor() {
     this.students = new StudentList();
-    // this.displayStyle = TaskListDisplay.Style.list;
     let i = 0;
 
-    if (!this.getFromLocalStorage()) this.loadDataFromApi();
+    if (!this.getFromLocalStorage()) {
+      this.loadDataFromApi();
+    }
     const sortBtn = document.querySelector(".sort-select");
     sortBtn.addEventListener("change", this.onSortTable);
     this.updateDisplay();
   }
 
-  add(student) {} //TODO-implement
+  // add(student) {}
   remove(id) {
     if (!this.students.removeStudent(id)) throw "Remove Student failed";
     this.addToLocalStorage();
@@ -41,17 +42,13 @@ class StudentsDisplay {
         updateObj[1],
         updateObj[2],
         updateObj[3],
-        // this.update[4],
         updateObj[4],
         updateObj[5],
-        // this.update[6],
-        // this.update[7]
         updateObj[6],
         updateObj[7]
       );
       console.log("new student created: ", student);
       if (this.students.updateStudent(id, student)) {
-
         this.addToLocalStorage();
         this.updateDisplay();
       }
@@ -63,8 +60,6 @@ class StudentsDisplay {
     const table = document.getElementById("resp-table-body");
     table.innerHTML = "";
     for (let i = 0; i < this.students.getLength(); i++) {
-      //[{"id":0,"firstName":"Adan","lastName":"Hajyahya","capsule":3}
-      //{"id":1,"age":27,"city":"Holon","gender":"Male","hobby":"Economics"}
       let tableRow = document.createElement("div");
       let studentList = this.students.getStudents();
       tableRow.classList.add("resp-table-row");
@@ -153,23 +148,25 @@ class StudentsDisplay {
     }
   }
 
-  addToLocalStorage() {
-    this.students.addToLocalStorage();
-  }
+  async addToLocalStorage() {
+    let data = JSON.stringify(this.students.getStudents());
+    localStorage.setItem("students", data);
+  } // write tasks to local storage
+
   getFromLocalStorage() {
     const storage = localStorage.getItem("students");
     if (storage) {
-      this.students.getFromLocalStorage();
-      //   let data = JSON.parse(storage);
-      //   console.log(data);
-      //   let i = 0;
-      //   while (i < data.length) {
-      //     let student = student.fromJson(data[i]);
-      //     console.log(student instanceof Student);
-      //     // task.print();
-      //     this.students.add(student);
-      //     i++;
-      //   }
+      // this.students.getFromLocalStorage();
+      let data = JSON.parse(storage);
+      console.log(data);
+      let i = 0;
+      while (i < data.length) {
+        let student = Student.fromJson(data[i]);
+        console.log(student instanceof Student);
+        // task.print();
+        this.students.addStudent(student);
+        i++;
+      }
       this.updateDisplay();
       return true;
     } else {
@@ -201,6 +198,7 @@ class StudentsDisplay {
           studentStats.hobby
         );
         this.students.addStudent(student);
+        this.addToLocalStorage();
         //   console.log("new student created:", student);
       }
       this.updateDisplay();
@@ -314,4 +312,8 @@ function main() {
 let studentsDisplay = null;
 window.onload = (event) => {
   main();
+};
+
+window.onclose = (event) => {
+  studentsDisplay.addToLocalStorage();
 };

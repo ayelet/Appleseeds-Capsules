@@ -49,9 +49,10 @@ class StudentList {
     thisStudent.setCapsule(student.getCapsule());
     thisStudent.setAge(student.getAge());
     thisStudent.setCity(student.getCity());
-    
+
     // thisStudent.setGender(student.getGender());
     thisStudent.setHobby(student.getHobby());
+    return true;
     // this.addToLocalStorage();
   }
   sort(field, direction = 0) {
@@ -62,11 +63,15 @@ class StudentList {
         break;
 
       case StudentList.sortField.firstName:
-        this.list.sort((a, b) => this.sortByField(a.getFirstName(), b.getFirstName()));
+        this.list.sort((a, b) =>
+          this.sortByField(a.getFirstName(), b.getFirstName())
+        );
         break;
 
       case StudentList.sortField.lastName:
-        this.list.sort((a, b) => this.sortByField(a.getLastName(), b.getLastName()));
+        this.list.sort((a, b) =>
+          this.sortByField(a.getLastName(), b.getLastName())
+        );
         break;
 
       case StudentList.sortField.Capsule:
@@ -81,15 +86,17 @@ class StudentList {
         this.list.sort((a, b) => this.sortByField(a.getCity(), b.getCity()));
         break;
       case StudentList.sortField.Gender:
-        this.list.sort((a, b) => this.sortByField(a.getGender(), b.getGender()));
+        this.list.sort((a, b) =>
+          this.sortByField(a.getGender(), b.getGender())
+        );
         break;
       case StudentList.sortField.Hobby:
-        this.list.sort((a,b) => this.sortByField(a.getHobby(), b.getHobby()));
+        this.list.sort((a, b) => this.sortByField(a.getHobby(), b.getHobby()));
         break;
     }
   }
 
-  sortByField(a,b) {
+  sortByField(a, b) {
     const x = a.toLowerCase().trim();
     const y = b.toLowerCase().trim();
     if (x < y) return -1;
@@ -101,29 +108,29 @@ class StudentList {
     return [];
   } //TODO-implement
 
-  async addToLocalStorage() {
-    let data = JSON.stringify(this.list);
-    localStorage.setItem("students", data);
-  } // write tasks to local storage
+  // async addToLocalStorage() {
+  //   let data = JSON.stringify(this.list);
+  //   localStorage.setItem("students", data);
+  // } // write tasks to local storage
 
-  getFromLocalStorage() {
-  
-    const storage = localStorage.getItem("students");
-    if (storage) {
-      let data = JSON.parse(storage);
-      console.log(data);
-      let i = 0;
-      while (i < data.length) {
-        let student = Student.fromJson(data[i]);
-        console.log(student instanceof Student);
-        // student.print();
-        this.addStudent(student);
-        i++;
-      }
-    }
-    // this.updateDisplay();
-  }
-  //checks that the data that is updated is valid. 
+  // getFromLocalStorage() {
+
+  //   const storage = localStorage.getItem("students");
+  //   if (storage) {
+  //     let data = JSON.parse(storage);
+  //     console.log(data);
+  //     let i = 0;
+  //     while (i < data.length) {
+  //       let student = Student.fromJson(data[i]);
+  //       console.log(student instanceof Student);
+  //       // student.print();
+  //       this.addStudent(student);
+  //       i++;
+  //     }
+  //   }
+  //   // this.updateDisplay();
+  // }
+  //checks that the data that is updated is valid.
   // returns true if valid, else returns false
   validateStudent() {
     return true;
